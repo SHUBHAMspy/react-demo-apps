@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+import SearchList from './components/SearchList';
+
+
 function App() {
+  const [countryList, setCountryList] = useState([]);
+  const [currentSearch, setcurrentSearch] = useState('');
+
+  const handleMouseOver = (e) => {
+    console.log(e.target);
+    // for (let index = 0; index < currentSearch.length; index++) {
+    //   if (currentSearch[index] === ('a'||'e'||'i'||'o'||'u')) {
+    //     currentSearch.
+    //   }
+      
+    // }
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 onMouseOver={handleMouseOver}>{currentSearch}</h1>
+      <SearchList setCountryList={setCountryList} setcurrentSearch={setcurrentSearch}/>
+      <>
+        {countryList.map((country,index) => (
+          <div key={index}>{country.name}</div>
+        ))}
+      </>
+      
     </div>
   );
 }
